@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" font-family="sans-serif" font-size="16">
+<defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#333"/></marker></defs>
+<rect x="0" width="1100" height="560" fill="white"/>
+<text x="550.0" y="30" text-anchor="middle" font-size="20" font-weight="bold"></text>
+<path d="M520.0,84 L520.0,109.0 L372.5,109.0 L372.5,134" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M520.0,84 L520.0,109.0 L667.5,109.0 L667.5,134" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M372.5,194 L372.5,219.0 L520.0,219.0 L520.0,244" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M667.5,194 L667.5,219.0 L520.0,219.0 L520.0,244" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M520.0,304 L520.0,329.0 L520.0,329.0 L520.0,354" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M520.0,414 L520.0,439.0 L372.5,439.0 L372.5,464" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M520.0,414 L520.0,439.0 L667.5,439.0 L667.5,464" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M850,384.0 L780.0,384.0 L780.0,384.0 L710,384.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M957.5,304 L957.5,329.0 L957.5,329.0 L957.5,354" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="240" y="24" width="560" height="60" rx="9" fill="#E8F1FB" stroke="#1F5FA8" stroke-width="1.8"/>
+<text x="520.0" y="59" text-anchor="middle" font-weight="bold">Gazebo Classic</text>
+<rect x="240" y="134" width="265" height="60" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="372.5" y="159" text-anchor="middle" font-weight="bold">slam_toolbox (robot1)</text>
+<text x="372.5" y="179" text-anchor="middle" fill="#444" font-size="15">/robot1/map</text>
+<rect x="535" y="134" width="265" height="60" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="667.5" y="159" text-anchor="middle" font-weight="bold">slam_toolbox (robot2)</text>
+<text x="667.5" y="179" text-anchor="middle" fill="#444" font-size="15">/robot2/map</text>
+<rect x="370" y="244" width="300" height="60" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
+<text x="520.0" y="279" text-anchor="middle" font-weight="bold">map_merge_node</text>
+<rect x="330" y="354" width="380" height="60" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
+<text x="520.0" y="379" text-anchor="middle" font-weight="bold">Exploration brain: picks frontiers</text>
+<text x="520.0" y="399" text-anchor="middle" fill="#444" font-size="15">heuristic coordinator  or  RL policy node</text>
+<rect x="240" y="464" width="265" height="60" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="372.5" y="499" text-anchor="middle" font-weight="bold">Nav2 (robot1)</text>
+<rect x="535" y="464" width="265" height="60" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="667.5" y="499" text-anchor="middle" font-weight="bold">Nav2 (robot2)</text>
+<rect x="850" y="244" width="215" height="60" rx="9" fill="#F3E8FA" stroke="#7B3FA6" stroke-width="1.8"/>
+<text x="957.5" y="269" text-anchor="middle" font-weight="bold">rl_sim</text>
+<text x="957.5" y="289" text-anchor="middle" fill="#444" font-size="15">2D sim + MaskablePPO</text>
+<rect x="850" y="354" width="215" height="60" rx="9" fill="#F3E8FA" stroke="#7B3FA6" stroke-width="1.8"/>
+<text x="957.5" y="389" text-anchor="middle" font-weight="bold">PPO policy</text>
+<text x="524" y="324" font-size="14.5" fill="#333" text-anchor="start" paint-order="stroke" stroke="white" stroke-width="4">/map (2 Hz)</text>
+<text x="450" y="434" font-size="14.5" fill="#333" text-anchor="start" paint-order="stroke" stroke="white" stroke-width="4">NavigateToPose goals</text>
+<text x="780" y="377" font-size="14.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">chosen frontier</text>
+<text x="962" y="324" font-size="14.5" fill="#333" text-anchor="start" paint-order="stroke" stroke="white" stroke-width="4">trains</text>
+<rect x="470" y="90" width="100" height="19" fill="white"/>
+<text x="520" y="104" font-size="14.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">scan + odom</text>
+<path d="M667.5,524 L667.5,544 L156,544 L156,494" fill="none" stroke="#B26A00" stroke-width="2" stroke-dasharray="7 4"/>
+<path d="M240,494 L156,494 L156,54 L240,54" fill="none" stroke="#B26A00" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#arr)"/>
+<text x="146" y="274" font-size="14" fill="#B26A00" text-anchor="middle" transform="rotate(-90 146 274)">/robotN/cmd_vel</text>
+<text x="36" y="59" font-size="15" font-weight="bold" fill="#888">1 · SIMULATE</text>
+<text x="36" y="169" font-size="15" font-weight="bold" fill="#888">2 · MAP</text>
+<text x="36" y="279" font-size="15" font-weight="bold" fill="#888">3 · MERGE</text>
+<text x="36" y="389" font-size="15" font-weight="bold" fill="#888">4 · DECIDE</text>
+<text x="36" y="499" font-size="15" font-weight="bold" fill="#888">5 · ACT</text>
+</svg>

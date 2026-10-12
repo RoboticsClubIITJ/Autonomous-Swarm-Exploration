@@ -13,12 +13,15 @@ COL = {'sim': '#E8F1FB', 'ros': '#EAF6EC', 'nav': '#FFF4E0', 'rl': '#F3E8FA', 'i
 EDGE = {'sim': '#1F5FA8', 'ros': '#2E7D32', 'nav': '#B26A00', 'rl': '#7B3FA6', 'io': '#555555', 'dec': '#C62828'}
 
 
-def diagram(name, title, w, h, nodes, edges, notes=(), raw=()):
-    """nodes: id -> (x, y, w, h, label, kind); edges: (src, dst, label, src_side, dst_side)."""
-    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" font-family="sans-serif" font-size="13">',
+def diagram(name, title, w, h, nodes, edges, notes=(), raw=(), fs=13, view=None):
+    """nodes: id -> (x, y, w, h, label, kind); edges: (src, dst, label, src_side, dst_side). fs: base font size.
+    view: optional (x0, x1) to crop the canvas horizontally to the content."""
+    vx, vw = (view[0], view[1] - view[0]) if view else (0, w)
+    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{vw}" height="{h}" viewBox="{vx} 0 {vw} {h}" '
+         f'font-family="sans-serif" font-size="{fs}">',
          '<defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">'
          '<path d="M0,0 L10,4 L0,8 z" fill="#333"/></marker></defs>',
-         f'<rect width="{w}" height="{h}" fill="white"/>',
+         f'<rect x="{vx}" width="{vw}" height="{h}" fill="white"/>',
          f'<text x="{w/2}" y="30" text-anchor="middle" font-size="20" font-weight="bold">{title}</text>']
 
     def anchor(n, side):
@@ -48,7 +51,7 @@ def diagram(name, title, w, h, nodes, edges, notes=(), raw=()):
             anchor_mid = s1 in 'lr' and s2 in 'lr' and abs(y1 - y2) < 1
             if anchor_mid:
                 lx, ly = (x1 + x2) / 2, y1 - 7
-            labels.append(f'<text x="{lx:.0f}" y="{ly:.0f}" font-size="11.5" fill="#333" '
+            labels.append(f'<text x="{lx:.0f}" y="{ly:.0f}" font-size="{fs - 1.5:g}" fill="#333" '
                           f'text-anchor="{"middle" if anchor_mid else "start"}" '
                           f'paint-order="stroke" stroke="white" stroke-width="4">{escape(label)}</text>')
     for n, (x, y, bw, bh, label, kind) in nodes.items():
@@ -56,8 +59,8 @@ def diagram(name, title, w, h, nodes, edges, notes=(), raw=()):
                  f'stroke="{EDGE[kind]}" stroke-width="1.8"/>')
         lines = label.split('\n')
         for i, line in enumerate(lines):
-            bold = ' font-weight="bold"' if i == 0 else ' fill="#444" font-size="12"'
-            yy = y + bh / 2 + (i - (len(lines) - 1) / 2) * 16 + 4
+            bold = ' font-weight="bold"' if i == 0 else f' fill="#444" font-size="{fs - 1:g}"'
+            yy = y + bh / 2 + (i - (len(lines) - 1) / 2) * 16 * fs / 13 + 4 * fs / 13
             p.append(f'<text x="{x + bw/2}" y="{yy:.0f}" text-anchor="middle"{bold}>{escape(line)}</text>')
     p.extend(labels)
     p.extend(raw)
@@ -134,33 +137,75 @@ diagram('../../presentation/system_architecture_topdown.svg', '',
   + ['<path d="M866,140 L880,140" stroke="#B26A00" stroke-width="2" stroke-dasharray="4 2"/>'
      '<text x="890" y="144" font-size="12">velocity commands (loop)</text>'])
 
+# 1d. System overview, top-down, v2 (no legend, larger text) ───────────
+R2_ = [24, 134, 244, 354, 464]        # row tops, evenly spaced
+B2 = 60                               # box height
+STAGE2 = '<text x="36" y="{}" font-size="15" font-weight="bold" fill="#888">{}</text>'
+diagram('../../presentation/system_architecture_topdown_2.svg', '',
+        1100, 560, {
+    'gz': (240, R2_[0], 560, B2, 'Gazebo Classic', 'sim'),
+    's1': (240, R2_[1], 265, B2, 'slam_toolbox (robot1)\n/robot1/map', 'nav'),
+    's2': (535, R2_[1], 265, B2, 'slam_toolbox (robot2)\n/robot2/map', 'nav'),
+    'merge': (370, R2_[2], 300, B2, 'map_merge_node', 'ros'),
+    'brain': (330, R2_[3], 380, B2, 'Exploration brain: picks frontiers\nheuristic coordinator  or  RL policy node', 'ros'),
+    'n1': (240, R2_[4], 265, B2, 'Nav2 (robot1)', 'nav'),
+    'n2': (535, R2_[4], 265, B2, 'Nav2 (robot2)', 'nav'),
+    'sim2d': (850, R2_[2], 215, B2, 'rl_sim\n2D sim + MaskablePPO', 'rl'),
+    'pol': (850, R2_[3], 215, B2, 'PPO policy', 'rl'),
+}, [
+    ('gz', 's1', '', 'b', 't'), ('gz', 's2', '', 'b', 't'),
+    ('s1', 'merge', '', 'b', 't'), ('s2', 'merge', '', 'b', 't'),
+    ('merge', 'brain', '/map (2 Hz)', 'b', 't'),
+    ('brain', 'n1', 'NavigateToPose goals', 'b', 't'), ('brain', 'n2', '', 'b', 't'),
+    ('pol', 'brain', 'chosen frontier', 'l', 'r'), ('sim2d', 'pol', 'trains', 'b', 't'),
+], fs=16, raw=[
+    # "scan + odom", centred on the fork under Gazebo
+    f'<rect x="470" y="{(R2_[0]+B2+R2_[1])//2-19}" width="100" height="19" fill="white"/>',
+    f'<text x="520" y="{(R2_[0]+B2+R2_[1])//2-5}" font-size="14.5" fill="#333" text-anchor="middle" '
+    'paint-order="stroke" stroke="white" stroke-width="4">scan + odom</text>',
+    # control loop: both robots' Nav2 velocity commands back up into Gazebo
+    f'<path d="M667.5,{R2_[4]+B2} L667.5,{R2_[4]+B2+20} L156,{R2_[4]+B2+20} L156,{R2_[4]+B2//2}" fill="none" '
+    'stroke="#B26A00" stroke-width="2" stroke-dasharray="7 4"/>',
+    f'<path d="M240,{R2_[4]+B2//2} L156,{R2_[4]+B2//2} L156,{R2_[0]+B2//2} L240,{R2_[0]+B2//2}" fill="none" '
+    'stroke="#B26A00" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#arr)"/>',
+    f'<text x="146" y="{(R2_[0]+R2_[4])//2+B2//2}" font-size="14" fill="#B26A00" text-anchor="middle" '
+    f'transform="rotate(-90 146 {(R2_[0]+R2_[4])//2+B2//2})">/robotN/cmd_vel</text>',
+] + [STAGE2.format(r + B2 // 2 + 5, t) for r, t in
+     zip(R2_, ['1 · SIMULATE', '2 · MAP', '3 · MERGE', '4 · DECIDE', '5 · ACT'])])
+
 # 1c. Nav2 inside one robot (slide version) ─────────────────────────────
 A = 'fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"'
 T = 'font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4"'
+R4 = [14, 124, 234, 344]              # row tops (box height 52, 58 between rows)
 diagram('../../presentation/nav2_architecture.svg', '',
-        1100, 560, {
-    # three aligned columns: x-centres 270 (planning side), 550 (main line), 845 (robot side)
-    'merge': (170, 75, 200, 52, 'SLAM + map merge\nmerged occupancy grid', 'ros'),
-    'brain': (450, 75, 200, 52, 'Exploration brain\npicks the next frontier', 'ros'),
-    'bt': (420, 180, 260, 52, 'BT Navigator\nplan → drive → recover if stuck', 'nav'),
-    'planner': (155, 300, 230, 52, 'Planner\nglobal path to the frontier', 'nav'),
-    'ctrl': (425, 300, 250, 52, 'Controller\nfollows the path, avoids obstacles', 'nav'),
-    'beh': (745, 300, 200, 52, 'Recovery\nspin · back up · wait', 'nav'),
-    'gcm': (155, 410, 230, 52, 'Global costmap\nwhole arena · 1 Hz', 'nav'),
-    'lcm': (425, 410, 250, 52, 'Local costmap\n3 × 3 m around the robot · 5 Hz', 'nav'),
-    'gz': (745, 410, 200, 52, 'Robot in Gazebo\nwheels move, lidar scans', 'sim'),
+        1100, 448, {
+    # compact 4-row layout; columns at x = 270 (planning), 550 (main line), 830 (robot)
+    'merge': (170, R4[0], 200, 52, 'SLAM + map merge\nMerged occupancy grid', 'ros'),
+    'brain': (450, R4[0], 200, 52, 'Exploration brain\nPicks the next frontier', 'ros'),
+    'bt': (420, R4[1], 260, 52, 'BT Navigator\nPlan → drive → recover if stuck', 'nav'),
+    'planner': (155, R4[2], 230, 52, 'Planner\nGlobal path to the frontier', 'nav'),
+    'ctrl': (425, R4[2], 250, 52, 'Controller\nFollows the path, avoids obstacles', 'nav'),
+    'beh': (730, R4[2], 200, 52, 'Recovery\nSpin · back up · wait', 'nav'),
+    'gcm': (155, R4[3], 230, 52, 'Global costmap\nWhole arena · 1 Hz', 'nav'),
+    'lcm': (425, R4[3], 250, 52, 'Local costmap\n3 × 3 m around the robot · 5 Hz', 'nav'),
+    'gz': (730, R4[3], 200, 52, 'Robot in Gazebo', 'sim'),
 }, [
     ('merge', 'brain', '/map', 'r', 'l'),
-    ('brain', 'bt', 'NavigateToPose (x, y)', 'b', 't'),
     ('bt', 'planner', '', 'b', 't'), ('bt', 'ctrl', '', 'b', 't'), ('bt', 'beh', '', 'b', 't'),
-    ('planner', 'ctrl', 'path', 'r', 'l'),
+    ('planner', 'ctrl', 'Path', 'r', 'l'),
     ('gcm', 'planner', '', 't', 'b'), ('lcm', 'ctrl', '', 't', 'b'),
 ], raw=[
-    f'<path d="M490,180 L490,127" {A}/>', f'<text x="482" y="158" {T} text-anchor="end">succeeded / failed</text>',
-    f'<path d="M675,326 L710,326 L710,436 L745,436" {A}/>', f'<text x="715" y="390" {T}>cmd_vel</text>',
-    f'<path d="M845,462 L845,500 L270,500 L270,462" {A}/>', f'<path d="M550,500 L550,462" {A}/>',
-    f'<text x="700" y="504" {T} text-anchor="middle">lidar scan</text>',
-])
+    # goal down / result up, symmetric about the brain's centre (x = 550), labels on one line
+    f'<path d="M590,{R4[0]+52} L590,{R4[1]}" {A}/>', f'<path d="M510,{R4[1]} L510,{R4[0]+52}" {A}/>',
+    f'<text x="598" y="{(R4[0]+52+R4[1])//2+4}" {T}>NavigateToPose (x, y)</text>',
+    f'<text x="502" y="{(R4[0]+52+R4[1])//2+4}" {T} text-anchor="end">Succeeded / failed</text>',
+    f'<path d="M675,{R4[2]+26} L702,{R4[2]+26} L702,{R4[3]+26} L730,{R4[3]+26}" {A}/>',
+    f'<text x="707" y="{(R4[2]+R4[3])//2+30}" {T}>cmd_vel</text>',
+    f'<path d="M830,{R4[3]+52} L830,{R4[3]+80} L270,{R4[3]+80} L270,{R4[3]+52}" {A}/>',
+    f'<path d="M550,{R4[3]+80} L550,{R4[3]+52}" {A}/>',
+    f'<rect x="652" y="{R4[3]+71}" width="76" height="17" fill="white"/>',
+    f'<text x="690" y="{R4[3]+84}" {T} text-anchor="middle">LiDAR scan</text>',
+], view=(135, 950))
 
 # 3b. Frames and map merging as data flow (slide version) ────────────────
 diagram('../../presentation/map_merging_flow.svg', 'Frames and map merging: how /map is built', 820, 560, {

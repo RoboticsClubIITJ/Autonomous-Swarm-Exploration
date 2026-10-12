@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="124" font-family="'Open Sans', sans-serif" font-size="13">
+<rect width="1100" height="124" fill="white"/>
+<text x="30" y="34" font-size="18" text-anchor="start" fill="#1C1C1C">Train in a fast 2D simulator</text>
+<text x="30" y="100" font-size="46" text-anchor="start" fill="#2B5C8A">≈ 300×</text>
+<text x="200" y="78" font-size="17" text-anchor="start" fill="#1C1C1C">faster than Gazebo</text>
+<text x="200" y="102" font-size="14" text-anchor="start" fill="#6E6E6E">190 vs 0.7 decisions / s</text>
+<line x1="440" y1="20" x2="440" y2="104" stroke="#D3D3D3" stroke-width="1"/>
+<text x="480" y="58" font-size="16" text-anchor="start" fill="#1C1C1C" font-weight="bold">RL training</text>
+<text x="620" y="58" font-size="16" text-anchor="start" fill="#1C1C1C">SB3 · MaskablePPO · PyTorch · Gymnasium · TensorBoard</text>
+<text x="480" y="92" font-size="16" text-anchor="start" fill="#1C1C1C" font-weight="bold">2D simulator</text>
+<text x="620" y="92" font-size="16" text-anchor="start" fill="#1C1C1C">NumPy · OpenCV</text>
+</svg>

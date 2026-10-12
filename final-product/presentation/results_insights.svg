@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="104" font-family="'Open Sans', sans-serif" font-size="13">
+<rect width="1100" height="104" fill="white"/>
+<text x="275.0" y="56" font-size="42" text-anchor="middle" fill="#1f77b4">+38 %</text>
+<text x="275.0" y="84" font-size="14" text-anchor="middle" fill="#1C1C1C">exploration rate, 30–150 s</text>
+<text x="825.0" y="56" font-size="42" text-anchor="middle" fill="#1f77b4">−21 %</text>
+<text x="825.0" y="84" font-size="14" text-anchor="middle" fill="#1C1C1C">time to map 30 m²</text>
+<line x1="550.0" y1="14" x2="550.0" y2="90" stroke="#D3D3D3" stroke-width="1"/>
+</svg>

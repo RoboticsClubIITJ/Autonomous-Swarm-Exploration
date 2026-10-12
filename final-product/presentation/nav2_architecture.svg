@@ -1,50 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" font-family="sans-serif" font-size="13">
+<svg xmlns="http://www.w3.org/2000/svg" width="815" height="448" viewBox="135 0 815 448" font-family="sans-serif" font-size="13">
 <defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#333"/></marker></defs>
-<rect width="1100" height="560" fill="white"/>
+<rect x="135" width="815" height="448" fill="white"/>
 <text x="550.0" y="30" text-anchor="middle" font-size="20" font-weight="bold"></text>
-<path d="M370,101.0 L410.0,101.0 L410.0,101.0 L450,101.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550.0,127 L550.0,153.5 L550.0,153.5 L550.0,180" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550.0,232 L550.0,266.0 L270.0,266.0 L270.0,300" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550.0,232 L550.0,266.0 L550.0,266.0 L550.0,300" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550.0,232 L550.0,266.0 L845.0,266.0 L845.0,300" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M385,326.0 L405.0,326.0 L405.0,326.0 L425,326.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M270.0,410 L270.0,381.0 L270.0,381.0 L270.0,352" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550.0,410 L550.0,381.0 L550.0,381.0 L550.0,352" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<rect x="170" y="75" width="200" height="52" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
-<text x="270.0" y="97" text-anchor="middle" font-weight="bold">SLAM + map merge</text>
-<text x="270.0" y="113" text-anchor="middle" fill="#444" font-size="12">merged occupancy grid</text>
-<rect x="450" y="75" width="200" height="52" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
-<text x="550.0" y="97" text-anchor="middle" font-weight="bold">Exploration brain</text>
-<text x="550.0" y="113" text-anchor="middle" fill="#444" font-size="12">picks the next frontier</text>
-<rect x="420" y="180" width="260" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="550.0" y="202" text-anchor="middle" font-weight="bold">BT Navigator</text>
-<text x="550.0" y="218" text-anchor="middle" fill="#444" font-size="12">plan → drive → recover if stuck</text>
-<rect x="155" y="300" width="230" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="270.0" y="322" text-anchor="middle" font-weight="bold">Planner</text>
-<text x="270.0" y="338" text-anchor="middle" fill="#444" font-size="12">global path to the frontier</text>
-<rect x="425" y="300" width="250" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="550.0" y="322" text-anchor="middle" font-weight="bold">Controller</text>
-<text x="550.0" y="338" text-anchor="middle" fill="#444" font-size="12">follows the path, avoids obstacles</text>
-<rect x="745" y="300" width="200" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="845.0" y="322" text-anchor="middle" font-weight="bold">Recovery</text>
-<text x="845.0" y="338" text-anchor="middle" fill="#444" font-size="12">spin · back up · wait</text>
-<rect x="155" y="410" width="230" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="270.0" y="432" text-anchor="middle" font-weight="bold">Global costmap</text>
-<text x="270.0" y="448" text-anchor="middle" fill="#444" font-size="12">whole arena · 1 Hz</text>
-<rect x="425" y="410" width="250" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
-<text x="550.0" y="432" text-anchor="middle" font-weight="bold">Local costmap</text>
-<text x="550.0" y="448" text-anchor="middle" fill="#444" font-size="12">3 × 3 m around the robot · 5 Hz</text>
-<rect x="745" y="410" width="200" height="52" rx="9" fill="#E8F1FB" stroke="#1F5FA8" stroke-width="1.8"/>
-<text x="845.0" y="432" text-anchor="middle" font-weight="bold">Robot in Gazebo</text>
-<text x="845.0" y="448" text-anchor="middle" fill="#444" font-size="12">wheels move, lidar scans</text>
-<text x="410" y="94" font-size="11.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">/map</text>
-<text x="554" y="148" font-size="11.5" fill="#333" text-anchor="start" paint-order="stroke" stroke="white" stroke-width="4">NavigateToPose (x, y)</text>
-<text x="405" y="319" font-size="11.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">path</text>
-<path d="M490,180 L490,127" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<text x="482" y="158" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4" text-anchor="end">succeeded / failed</text>
-<path d="M675,326 L710,326 L710,436 L745,436" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<text x="715" y="390" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4">cmd_vel</text>
-<path d="M845,462 L845,500 L270,500 L270,462" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<path d="M550,500 L550,462" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
-<text x="700" y="504" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4" text-anchor="middle">lidar scan</text>
+<path d="M370,40.0 L410.0,40.0 L410.0,40.0 L450,40.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M550.0,176 L550.0,205.0 L270.0,205.0 L270.0,234" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M550.0,176 L550.0,205.0 L550.0,205.0 L550.0,234" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M550.0,176 L550.0,205.0 L830.0,205.0 L830.0,234" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M385,260.0 L405.0,260.0 L405.0,260.0 L425,260.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M270.0,344 L270.0,315.0 L270.0,315.0 L270.0,286" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M550.0,344 L550.0,315.0 L550.0,315.0 L550.0,286" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="170" y="14" width="200" height="52" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
+<text x="270.0" y="36" text-anchor="middle" font-weight="bold">SLAM + map merge</text>
+<text x="270.0" y="52" text-anchor="middle" fill="#444" font-size="12">Merged occupancy grid</text>
+<rect x="450" y="14" width="200" height="52" rx="9" fill="#EAF6EC" stroke="#2E7D32" stroke-width="1.8"/>
+<text x="550.0" y="36" text-anchor="middle" font-weight="bold">Exploration brain</text>
+<text x="550.0" y="52" text-anchor="middle" fill="#444" font-size="12">Picks the next frontier</text>
+<rect x="420" y="124" width="260" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="550.0" y="146" text-anchor="middle" font-weight="bold">BT Navigator</text>
+<text x="550.0" y="162" text-anchor="middle" fill="#444" font-size="12">Plan → drive → recover if stuck</text>
+<rect x="155" y="234" width="230" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="270.0" y="256" text-anchor="middle" font-weight="bold">Planner</text>
+<text x="270.0" y="272" text-anchor="middle" fill="#444" font-size="12">Global path to the frontier</text>
+<rect x="425" y="234" width="250" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="550.0" y="256" text-anchor="middle" font-weight="bold">Controller</text>
+<text x="550.0" y="272" text-anchor="middle" fill="#444" font-size="12">Follows the path, avoids obstacles</text>
+<rect x="730" y="234" width="200" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="830.0" y="256" text-anchor="middle" font-weight="bold">Recovery</text>
+<text x="830.0" y="272" text-anchor="middle" fill="#444" font-size="12">Spin · back up · wait</text>
+<rect x="155" y="344" width="230" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="270.0" y="366" text-anchor="middle" font-weight="bold">Global costmap</text>
+<text x="270.0" y="382" text-anchor="middle" fill="#444" font-size="12">Whole arena · 1 Hz</text>
+<rect x="425" y="344" width="250" height="52" rx="9" fill="#FFF4E0" stroke="#B26A00" stroke-width="1.8"/>
+<text x="550.0" y="366" text-anchor="middle" font-weight="bold">Local costmap</text>
+<text x="550.0" y="382" text-anchor="middle" fill="#444" font-size="12">3 × 3 m around the robot · 5 Hz</text>
+<rect x="730" y="344" width="200" height="52" rx="9" fill="#E8F1FB" stroke="#1F5FA8" stroke-width="1.8"/>
+<text x="830.0" y="374" text-anchor="middle" font-weight="bold">Robot in Gazebo</text>
+<text x="410" y="33" font-size="11.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">/map</text>
+<text x="405" y="253" font-size="11.5" fill="#333" text-anchor="middle" paint-order="stroke" stroke="white" stroke-width="4">Path</text>
+<path d="M590,66 L590,124" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M510,124 L510,66" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="598" y="99" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4">NavigateToPose (x, y)</text>
+<text x="502" y="99" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4" text-anchor="end">Succeeded / failed</text>
+<path d="M675,260 L702,260 L702,370 L730,370" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="707" y="319" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4">cmd_vel</text>
+<path d="M830,396 L830,424 L270,424 L270,396" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M550,424 L550,396" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="652" y="415" width="76" height="17" fill="white"/>
+<text x="690" y="428" font-size="11.5" fill="#333" paint-order="stroke" stroke="white" stroke-width="4" text-anchor="middle">LiDAR scan</text>
 </svg>

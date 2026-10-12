@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" font-family="sans-serif" font-size="13">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" font-family="sans-serif" font-size="13">
 <defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#333"/></marker></defs>
-<rect width="1100" height="560" fill="white"/>
+<rect x="0" width="1100" height="560" fill="white"/>
 <text x="550.0" y="30" text-anchor="middle" font-size="20" font-weight="bold">System architecture: data and control flow</text>
 <path d="M240,125.0 L295.0,125.0 L295.0,125.0 L350,125.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>
 <path d="M540,125.0 L595.0,125.0 L595.0,125.0 L650,125.0" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#arr)"/>

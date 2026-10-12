@@ -75,7 +75,7 @@ def svg(ppo, heur, path, horizon=240):
 
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" font-family="sans-serif" font-size="12">',
            f'<rect width="{W}" height="{H}" fill="white"/>',
-           f'<text x="{W/2}" y="16" text-anchor="middle" font-size="15" font-weight="bold">Gazebo: known map area over time</text>']
+           f'<text x="{W/2}" y="16" text-anchor="middle" font-size="15" font-weight="bold">Known map area over time</text>']
     for v in range(0, int(ymax) + 1, 10):
         out.append(f'<line x1="{L}" x2="{W-R}" y1="{ys(v):.1f}" y2="{ys(v):.1f}" stroke="#ddd"/>'
                    f'<text x="{L-8}" y="{ys(v)+4:.1f}" text-anchor="end">{v}</text>')
@@ -83,7 +83,7 @@ def svg(ppo, heur, path, horizon=240):
         out.append(f'<text x="{xs(t):.1f}" y="{H-B+18}" text-anchor="middle">{t}</text>')
     out.append(f'<text x="{(L+W-R)/2}" y="{H-12}" text-anchor="middle">simulated time (s)</text>'
                f'<text x="16" y="{(H-B)/2}" transform="rotate(-90 16 {(H-B)/2})" text-anchor="middle">known area (m²)</text>')
-    for runs, color, label, ly in ((ppo, '#1f77b4', 'PPO policy', 46), (heur, '#d62728', 'Heuristic (frontier_coordinator cost)', 64)):
+    for runs, color, label, ly in ((ppo, '#1f77b4', 'PPO policy', 46), (heur, '#d62728', 'Heuristic', 64)):
         c = curves(runs)
         lo, hi, mean = c.min(0), c.max(0), c.mean(0)
         band = ' '.join(f'{xs(t):.1f},{ys(v):.1f}' for t, v in zip(grid, hi)) + ' ' + \
@@ -92,7 +92,7 @@ def svg(ppo, heur, path, horizon=240):
         line = ' '.join(f'{xs(t):.1f},{ys(v):.1f}' for t, v in zip(grid, mean))
         out.append(f'<polyline points="{line}" fill="none" stroke="{color}" stroke-width="2.5"/>')
         out.append(f'<line x1="{L+15}" x2="{L+40}" y1="{ly}" y2="{ly}" stroke="{color}" stroke-width="2.5"/>'
-                   f'<text x="{L+46}" y="{ly+4}">{label}: mean of {len(runs)} runs, band = min–max</text>')
+                   f'<text x="{L+46}" y="{ly+4}">{label}</text>')
     out.append('</svg>')
     with open(path, 'w') as fh:
         fh.write('\n'.join(out))
